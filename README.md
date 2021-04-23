@@ -43,3 +43,29 @@ yarn add express
 `node_modules`라는 폴더일것이다. 펼쳐보면 정말 많은 폴더들이 있는데, `node_modules`는 npm이나 yarn으로 설치한 라이브러리의 실제 코드가 저장된 곳이다.
 
 이제 `Hello World`를 빌드하기 위한 준비단계는 끝났다. 
+
+이제 `hello_world`폴더 내에 `index.js`를 생성해주자.
+
+```javascript
+const express = require('express');
+const app = express();
+const PORT = 3000;
+
+app.get('/',(req,res) => {
+    res.send("Hello World");
+})
+
+app.listen(PORT , () => {
+    console.log(`Server is running at ${PORT}`);
+})
+```
+위와 같이 작성을 해주고 
+```
+node index.js
+```
+의 작업을 해주게되면, `Server is running at 3000`이라는 문구가 뜨면서 서버가 실행될것이다.
+
+`http://localhost:3000/`로 들어가게 되면 
+![image](https://user-images.githubusercontent.com/48292190/115872443-c6044280-a47c-11eb-97c4-aa4f4a390e73.png)
+
+다음과 같이 뜰 것이다.
