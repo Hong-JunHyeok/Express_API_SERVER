@@ -1,4 +1,4 @@
-# Express의 공식문서를 보고 만들어보는 API 서버입니다.
+# Express로 API 서버를 만드는 방법을 알아봅시다!
 
 ![image](https://user-images.githubusercontent.com/48292190/115871562-addff380-a47b-11eb-83c7-d623afbeda53.png)
 
@@ -68,4 +68,44 @@ node index.js
 `http://localhost:3000/`로 들어가게 되면 
 ![image](https://user-images.githubusercontent.com/48292190/115872443-c6044280-a47c-11eb-97c4-aa4f4a390e73.png)
 
-다음과 같이 뜰 것이다.
+다음과 같이 **잘** 뜰 것이다.
+
+## 기본 라우팅 
+라우팅이란? 
+> URI(또는 경로) 및 특정한 HTTP 요청 메소드(GET, POST 등)인 특정 엔드포인트에 대한 클라이언트 요청에 애플리케이션이 응답하는 방법을 결정하는 것을 말한다.
+
+```javascript
+app.METHOD(PATH, HANDLER)
+```
+다음과 같은 형식을 가지게되는데, **PATH에는 URI가 들어가게 된다.**
+**HANDLER는 라우트가 일치할 때 실행되는 함수이다.**
+
+이제 라우팅 예제를 보면서 익혀보는 시간을 가져보도록 하자.
+아까 만든 `hello_world`폴더를 재활용해보자.
+
+```javascript
+app.get('/',(req,res) => {
+    res.send("Hello World");
+})
+```
+아까 작업했던 코드인데, 이제 어느정도 뭔 역할을 수행하는지 보인다.
+
+- app.get에서 **get**은 GET 메서드를 의미한다.
+- '/'부분은 URI 로 /를 받을때를 의미한다.
+- (req,res) => {
+    res.send("Hello World");
+} 부분은 '/'로 라우팅이 됬을때에 실행하는 함수이다.
+
+```javascript
+(req,res) => {
+    res.send("Hello World");
+}
+```
+여기서 이부분을 조금 자세히 살펴볼건데, 
+
+- req는 리퀘스트이다. 클라이언트측에서 보낸 정보가 담겨있다.
+
+- res는 리스폰스이다. 서버에서 클라이언트로 보낼때의 정보가 담겨있다.
+
+> 이제 어느정도 Express구조가 눈에 보이기 시작한다.
+
