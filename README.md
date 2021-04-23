@@ -120,3 +120,15 @@ app.get('/',(req,res) => {
 
 ## Express에서 정적 파일 제공
 
+> "이미지, CSS 파일 및 JavaScript 파일과 같은 정적 파일을 제공하려면 Express의 기본 제공 미들웨어 함수인 express.static을 사용하십시오. - Express 공식문서"
+
+```javascript
+app.use(express.static('public'));
+```
+
+위와 같은 형식으로 작성을 하며, 이 코드를 작성하면 public이라는 이름의 디렉토리에 포함된 이미지, CSS 파일 및 JavaScript 파일을 제공한다.
+
+![image](https://user-images.githubusercontent.com/48292190/115877886-e505d300-a482-11eb-8d4a-065493b7b9cb.png)
+
+public뿐만 아니라 여러개의 정적 디렉토리를 지정할 수 있다.
+
