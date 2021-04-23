@@ -2,6 +2,11 @@
 
 ![image](https://user-images.githubusercontent.com/48292190/115871562-addff380-a47b-11eb-83c7-d623afbeda53.png)
 
+# 목차
+- [시작하기](#시작하기)
+- [기본 라우팅](#기본-라우팅)
+- [Express에서 정적 파일 제공](#Express에서-정적-파일-제공)
+
 ## 시작하기
 가장먼저 Hello World를 출력하는 서버를 만들어 볼것이다.
 이 예제는 공식문서에도 있는 예제이며, 아마 Express로 프로젝트를 만들때 가장 쉽게 만들수 있는 앱이다.
@@ -108,4 +113,10 @@ app.get('/',(req,res) => {
 - res는 리스폰스이다. 서버에서 클라이언트로 보낼때의 정보가 담겨있다.
 
 > 이제 어느정도 Express구조가 눈에 보이기 시작한다.
+
+![image](https://user-images.githubusercontent.com/48292190/115874641-475cd480-a47f-11eb-87eb-1c2d9c0fce1a.png)
+
+이렇게 다양한 메서드에 따른 핸들러 함수를 다르게 적용할 수 있다.
+
+## Express에서 정적 파일 제공
 
