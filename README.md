@@ -3,11 +3,13 @@
 ![image](https://user-images.githubusercontent.com/48292190/115871562-addff380-a47b-11eb-83c7-d623afbeda53.png)
 
 # 목차
+
 - [시작하기](#시작하기)
 - [기본 라우팅](#기본-라우팅)
 - [Express에서 정적 파일 제공](#Express에서-정적-파일-제공)
 
 ## 시작하기
+
 가장먼저 Hello World를 출력하는 서버를 만들어 볼것이다.
 이 예제는 공식문서에도 있는 예제이며, 아마 Express로 프로젝트를 만들때 가장 쉽게 만들수 있는 앱이다.
 
@@ -15,14 +17,17 @@
 
 위와 같은 명령어로 hello_world라는 폴더를 만들어주고, 그 폴더로 이동해서 작업을 해볼것이다.
 
-이동한 폴더에서 
+이동한 폴더에서
+
 ```
-npm init    
+npm init
 ```
+
 명령어로 `package.json`을 만들어주자.
 
 `npm init`명령어를 사용하게 되면 몇몇 질의가 주고갈텐데,
 공식문서에는 entry point를 index.js로 해도되고 app.js로 해도되고 사용자 마음대로라고 하는 것 같다.
+
 ```json
 {
   "name": "hello_world",
@@ -36,6 +41,7 @@ npm init
   "license": "ISC"
 }
 ```
+
 이렇게 만든 `package.json`은 이러한 형식일것이다.
 이제 본격적으로 `Express`를 설치할 차례이다.
 
@@ -44,44 +50,51 @@ npm init
 ```
 yarn add express
 ```
-이 작업을 하게 되면, 파일이 여러개 생길텐데, 가장 눈에 띄는것은 
+
+이 작업을 하게 되면, 파일이 여러개 생길텐데, 가장 눈에 띄는것은
 `node_modules`라는 폴더일것이다. 펼쳐보면 정말 많은 폴더들이 있는데, `node_modules`는 npm이나 yarn으로 설치한 라이브러리의 실제 코드가 저장된 곳이다.
 
-이제 `Hello World`를 빌드하기 위한 준비단계는 끝났다. 
+이제 `Hello World`를 빌드하기 위한 준비단계는 끝났다.
 
 이제 `hello_world`폴더 내에 `index.js`를 생성해주자.
 
 ```javascript
-const express = require('express');
+const express = require("express");
 const app = express();
 const PORT = 3000;
 
-app.get('/',(req,res) => {
-    res.send("Hello World");
-})
+app.get("/", (req, res) => {
+  res.send("Hello World");
+});
 
-app.listen(PORT , () => {
-    console.log(`Server is running at ${PORT}`);
-})
+app.listen(PORT, () => {
+  console.log(`Server is running at ${PORT}`);
+});
 ```
-위와 같이 작성을 해주고 
+
+위와 같이 작성을 해주고
+
 ```
 node index.js
 ```
+
 의 작업을 해주게되면, `Server is running at 3000`이라는 문구가 뜨면서 서버가 실행될것이다.
 
-`http://localhost:3000/`로 들어가게 되면 
+`http://localhost:3000/`로 들어가게 되면
 ![image](https://user-images.githubusercontent.com/48292190/115872443-c6044280-a47c-11eb-97c4-aa4f4a390e73.png)
 
 다음과 같이 **잘** 뜰 것이다.
 
-## 기본 라우팅 
-라우팅이란? 
+## 기본 라우팅
+
+라우팅이란?
+
 > URI(또는 경로) 및 특정한 HTTP 요청 메소드(GET, POST 등)인 특정 엔드포인트에 대한 클라이언트 요청에 애플리케이션이 응답하는 방법을 결정하는 것을 말한다.
 
 ```javascript
-app.METHOD(PATH, HANDLER)
+app.METHOD(PATH, HANDLER);
 ```
+
 다음과 같은 형식을 가지게되는데, **PATH에는 URI가 들어가게 된다.**
 **HANDLER는 라우트가 일치할 때 실행되는 함수이다.**
 
@@ -89,24 +102,26 @@ app.METHOD(PATH, HANDLER)
 아까 만든 `hello_world`폴더를 재활용해보자.
 
 ```javascript
-app.get('/',(req,res) => {
-    res.send("Hello World");
-})
+app.get("/", (req, res) => {
+  res.send("Hello World");
+});
 ```
+
 아까 작업했던 코드인데, 이제 어느정도 뭔 역할을 수행하는지 보인다.
 
 - app.get에서 **get**은 GET 메서드를 의미한다.
 - '/'부분은 URI 로 /를 받을때를 의미한다.
 - (req,res) => {
-    res.send("Hello World");
-} 부분은 '/'로 라우팅이 됬을때에 실행하는 함수이다.
+  res.send("Hello World");
+  } 부분은 '/'로 라우팅이 됬을때에 실행하는 함수이다.
 
 ```javascript
-(req,res) => {
-    res.send("Hello World");
-}
+(req, res) => {
+  res.send("Hello World");
+};
 ```
-여기서 이부분을 조금 자세히 살펴볼건데, 
+
+여기서 이부분을 조금 자세히 살펴볼건데,
 
 - req는 리퀘스트이다. 클라이언트측에서 보낸 정보가 담겨있다.
 
@@ -123,7 +138,7 @@ app.get('/',(req,res) => {
 > "이미지, CSS 파일 및 JavaScript 파일과 같은 정적 파일을 제공하려면 Express의 기본 제공 미들웨어 함수인 express.static을 사용하십시오. - Express 공식문서"
 
 ```javascript
-app.use(express.static('public'));
+app.use(express.static("public"));
 ```
 
 위와 같은 형식으로 작성을 하며, 이 코드를 작성하면 public이라는 이름의 디렉토리에 포함된 이미지, CSS 파일 및 JavaScript 파일을 제공한다.
@@ -132,3 +147,63 @@ app.use(express.static('public'));
 
 public뿐만 아니라 여러개의 정적 디렉토리를 지정할 수 있다.
 
+<hr />
+
+## TypeORM & TypeScript & Express
+
+[링크](https://velog.io/@devzunky/TIL-no.92-TypeORM-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0)
+
+> 위의 링크에서 설정하는 방법을 배웠습니다 ㅎㅎ
+
+```
+npm install typeorm -g
+```
+
+typeorm을 먼저 설치해준다.
+
+```
+typeorm init --name [프로젝트 이름] --database [데이터베이스]
+```
+
+![image](https://user-images.githubusercontent.com/48292190/115880516-c81ecf00-a485-11eb-8ae7-e215901e8838.png)
+
+다음과 같은 파일구조가 생길것이다.
+
+```
+cd [프로젝트 이름]
+yarn
+//or
+npm install
+```
+
+이제 ormconfig.json에 가서 `username`,`password`,`database`이 정보에 맞게 수정해주자.
+
+```json
+{
+   "type": "mysql",
+   "host": "localhost",
+   "port": 3306,
+   "username": "test", //여기
+   "password": "test", //세곳을
+   "database": "test", //고쳐주세요
+   "synchronize": true,
+   "logging": false,
+   "entities": [
+      "src/entity/**/*.ts"
+   ],
+   "migrations": [
+      "src/migration/**/*.ts"
+   ],
+   "subscribers": [
+      "src/subscriber/**/*.ts"
+   ]
+}
+
+```
+
+그다음 mysql을 실행시켜서 다음과 같은 쿼리를 작성하자.
+```
+CREATE DATABASE [데이터베이스 이름] CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci
+```
+
+이렇게 하고 `yarn start`를 한번 해보면 정상적으로 결과가 뜨는것을 알 수 있다.
